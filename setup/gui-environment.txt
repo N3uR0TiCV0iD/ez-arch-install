@@ -1,0 +1,7 @@
+xfwm4
+xfdesktop
+xfce4-panel
+xfce4-session
+xfce4-settings
+lightdm
+lightdm-gtk-greeter

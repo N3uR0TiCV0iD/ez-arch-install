@@ -1,0 +1,8 @@
+xfce4-terminal
+leafpad
+code
+firefox
+thunar
+thunar-volman
+thunar-archive-plugin
+tumbler

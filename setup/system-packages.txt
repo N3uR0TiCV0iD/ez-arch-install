@@ -1,0 +1,4 @@
+sudo
+nano
+dhcpcd
+bash-completion
