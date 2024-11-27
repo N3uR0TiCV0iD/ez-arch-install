@@ -6,7 +6,8 @@
 
 ## Features
 
-- **Guided installation:** Designed with interactive steps to simplify the Arch Linux installation process.
+- **Guided installation:**</br>
+     Designed with interactive steps to simplify the Arch Linux installation process.
 - **Disk management:**
   - Manage disk partitions.
   - Format disk partitions (guided).
@@ -15,18 +16,37 @@
   - Automated `grub` configuration for MBR partitioned disks.
   - Automated `systemd-boot` configuration for GPT partitioned disks.
   - Choose between a GUI, CLI, or mixed environment during installation.
-- **Package installation:**
-   Configurable list of packages to be installed (defined in the `/setup` folder).
-- **GUI environment installation:**
-   Install and customize a desktop environment (defined in `/setup/gui-environment.txt`)
-- **User management:**
-   Manage user accounts, groups and `sudo` permissions.
-- **Service management:**
-   Configure services to start at boot (defined in `/setup/systemd-services.txt`)
+- **Package installation:**</br>
+     Configurable list of packages to be installed (defined in the `/setup` folder).
+- **GUI environment installation:**</br>
+     Install and customize a desktop environment (defined in `/setup/gui-environment.txt`)
+- **User management:**</br>
+     Manage user accounts, groups and `sudo` permissions.
+- **Service management:**</br>
+     Configure services to start at boot (defined in `/setup/systemd-services.txt`)
 - **System configuration:**
-  - Assist with setting the locale, timezone, and keyboard layout.
+  - Assisted locale, timezone, and keyboard layout setup.
   - Enable or disable the `multilib` repository.
   - Set the system's `hostname`.
+
+## Planned Features
+
+The following features are planned for future updates to `ez-arch-install`:
+
+- **Firewall configuration:**<br>
+     Add the possibility to enable and configure a firewall.
+- **Driver installation:**<br>
+     Installation and configuration of hardware drivers (graphics cards, printers, etc).
+- **Express installer mode:**<br>
+     Introduce a `express_installer.sh` script for quick and fully-automated installations with minimal user input.
+- **Performance tuning:**<br>
+     Provide options to optimize system performance (kernel parameters, caching, etc).
+- **Backup configuration:**<br>
+     Add support for setting up and configuring backup tools.
+- **Power management:**<br>
+     Include options to manage power settings for laptops.
+- **Custom script support(?):**<br>
+     Allow users to include and execute their own scripts during installation.
 
 ## Preview
 
@@ -58,13 +78,13 @@
 
 ### Steps
 
-1. **Prepare the installation files**
+1. **Prepare the installation files**</br>
    Copy the `ez-arch-install` folder to a storage medium (USB, DVD/CD or ISO) that will be accessible from the Arch Linux installation environment.
 
-2. **Boot into the Arch Linux installation**
+2. **Boot into the Arch Linux installation**</br>
    Boot your system using the bootable Arch Linux installation medium.
 
-3. **Mount the installation wizard**
+3. **Mount the installation wizard**</br>
    Run the following commands to make the `ez-arch-install` folder accessible:
    ```bash
    mkdir /install
@@ -74,7 +94,7 @@
    ```
    Replace `{STORAGE_DEVICE}` with the device identifier of your storage medium.
 
-4. **Start the installation wizard**
+4. **Start the installation wizard**</br>
    Run the following commands to start the `arch_installer.sh` wizard:
    ```bash
    cd /install/ez-arch-install
@@ -82,7 +102,7 @@
    ./arch_installer.sh
    ```
 
-5. **Follow the installation wizard**
+5. **Follow the installation wizard**</br>
    The wizard will guide you step-by-step through the installation process.
    Follow the on-screen instructions and prompts to setup and configure your system.
 
