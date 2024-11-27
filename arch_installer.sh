@@ -43,7 +43,7 @@ show_menu() {
       5) source "./install-scripts/post_install.sh" ;;
       6)
          if has_chrooted; then
-          # We are in a chroot context, delegate it to the caller (see "install_arch.sh")
+          # We are in a chroot context, delegate it to the caller (see "install_arch.sh" => if [[ $? == 101 ]])
           exit 101
          fi
          reboot_system

@@ -78,64 +78,48 @@ is_valid_disk() {
   return 0
 }
 
-show_gpt_partition_help2() {
+show_gpt_partition_help() {
   local RESET='\033[0m'
   local BOLD='\033[1m'
-  local WHITE='\033[0;37m'
-  local YELLOW='\033[0;33m'
+  local CYAN='\033[0;36m'
+  local WHITE='\033[1;37m'
+  local MAGENTA='\033[0;35m'
   local ramGBSize=$(awk '/MemTotal/ { printf "%.0f", $2 / 1024 / 1024 + 0.5 }' /proc/meminfo)
   clear
   echo "Partition recommendations:"
   echo "=========================="
-  echo "${WHITE}boot|efi${RESET}: 512 MiB - 1 GiB"
-  echo "${WHITE}swap${RESET}: $ramGBSize GiB (Based on your RAM)"
-  echo "root|system${RESET}: 16 GiB - 64 GiB"
-  echo "home${RESET}: Remainder of the disk"
+  echo -e "${MAGENTA}boot|efi${RESET}: 512 MiB - 1 GiB"
+  echo -e "${CYAN}swap${RESET}: $ramGBSize GiB (Based on your RAM)"
+  echo -e "${WHITE}root|system${RESET}: 16 GiB - 64 GiB"
+  echo -e "${WHITE}home${RESET}: Remainder of the disk"
   echo ""
   echo "Partition type codes:"
   echo "--------------------------"
-  echo "[EF00] EFI System"
-  echo "[8200] Linux swap"
-  echo "[8300] Linux filesystem"
-  echo "=========================="
-  continue_prompt
-}
-
-show_gpt_partition_help() {
-  local ramGBSize=$(awk '/MemTotal/ { printf "%.0f", $2 / 1024 / 1024 + 0.5 }' /proc/meminfo)
-  clear
-  echo "Partition recommendations:"
-  echo "=========================="
-  echo "boot|efi: 512 MiB - 1 GiB"
-  echo "swap: $ramGBSize GiB (Based on your RAM)"
-  echo "root|system: 16 GiB - 64 GiB"
-  echo "home: Remainder of the disk"
-  echo ""
-  echo "Partition type codes:"
-  echo "--------------------------"
-  echo "[EF00] EFI System"
-  echo "[8200] Linux swap"
-  echo "[8300] Linux filesystem"
+  echo -e "[${MAGENTA}EF00${RESET}] EFI System"
+  echo -e "[${CYAN}8200${RESET}] Linux swap"
+  echo -e "[${WHITE}8300${RESET}] Linux filesystem"
   echo "=========================="
   continue_prompt
 }
 
 show_mbr_partition_help() {
-  local BOLD='\033[1m'
   local RESET='\033[0m'
+  local BOLD='\033[1m'
+  local CYAN='\033[0;36m'
+  local WHITE='\033[1;37m'
   local ramGBSize=$(awk '/MemTotal/ { printf "%.0f", $2 / 1024 / 1024 + 0.5 }' /proc/meminfo)
   clear
   echo "Partition recommendations:"
   echo "=========================="
-  echo "boot: 256 MiB - 512 MiB"
-  echo "swap: $ramGBSize GiB (Based on your RAM)"
-  echo "root|system: 16 GiB - 64 GiB"
-  echo "home: Remainder of the disk"
+  echo -e "${WHITE}boot${RESET}: 256 MiB - 512 MiB"
+  echo -e "${CYAN}swap${RESET}: $ramGBSize GiB (Based on your RAM)"
+  echo -e "${WHITE}root|system${RESET}: 16 GiB - 64 GiB"
+  echo -e "${WHITE}home${RESET}: Remainder of the disk"
   echo ""
   echo "Partition type codes:"
   echo "--------------------------"
-  echo "[82] Linux swap"
-  echo "[83] Linux filesystem"
+  echo -e "[${CYAN}82${RESET}] Linux swap"
+  echo -e "[${WHITE}83${RESET}] Linux filesystem"
   echo "=========================="
   echo ""
   echo -e "${BOLD}IMPORTANT: Non-UEFI BIOS detected. Please choose the 'dos' label type!${RESET}"

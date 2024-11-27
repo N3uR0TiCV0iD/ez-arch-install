@@ -160,6 +160,11 @@ rank_mirrors() {
   rankmirrors -n 6 /etc/pacman.d/mirrorlist_BAK > /etc/pacman.d/mirrorlist
 }
 
+update_keyring() {
+  print_info "Updating archlinux-keyring (to ensure latest trusted keys)"
+  pacman -Sy --noconfirm --needed archlinux-keyring > /dev/null
+}
+
 #verify_required_packages(bootloaderEntries)
 verify_required_packages()  {
   if ! verify_packages_list "system" "./setup/system-packages.txt"; then
@@ -192,6 +197,7 @@ switch_to_arch() {
   print_info "Booting into Arch Linux..."
   cp -r "$scriptDir/" "/mnt/root/ez-arch-install/"
   arch-chroot /mnt /root/ez-arch-install/$(basename "$0") "$1" #Script "re-takes" control
+
   exitCode=$?
   rm -rf "/mnt/root/ez-arch-install"
   return $exitCode
@@ -504,6 +510,9 @@ if [[ -z $bootloaderEntries ]]; then
 
   echo ""
   rank_mirrors
+
+  echo ""
+  update_keyring
 
   echo ""
   if ! verify_required_packages $bootloaderEntries; then
