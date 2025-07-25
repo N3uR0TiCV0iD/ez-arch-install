@@ -38,7 +38,7 @@ The following features are planned for future updates to `ez-arch-install`:
 - **Driver installation:**<br>
      Installation and configuration of hardware drivers (graphics cards, printers, etc).
 - **Express installer mode:**<br>
-     Introduce a `express_installer.sh` script for quick and fully-automated installations with minimal user input.
+     Introduce an `express_installer.sh` script for quick and fully-automated installations with minimal user input.
 - **Performance tuning:**<br>
      Provide options to optimize system performance (kernel parameters, caching, etc).
 - **Backup configuration:**<br>
@@ -141,5 +141,5 @@ This wizard is provided as-is, without warranty of any kind, as outlined in the 
 
 **Always** <u>back up important data</u> **before** proceeding with any installation or system modification.
 
-The author takes no responsibility for any issues that may arise from its use.
+The author takes no responsibility for any issues that may arise from its use.<br>
 Proceed at your own risk.

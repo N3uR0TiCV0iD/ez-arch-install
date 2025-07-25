@@ -151,13 +151,20 @@ show_iwctl_help() {
 #===============
 
 rank_mirrors() {
-  print_info "Installing pacman-contrib (for mirror ranking)"
-  pacman -Sy --noconfirm --needed pacman-contrib > /dev/null
+  print_info "Detecting your country for optimal mirrors..."
+  local country=$(curl -s https://ifconfig.co/country-iso)
 
-  echo ""
-  print_info "Ranking download mirrors..."
-  cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist_BAK
-  rankmirrors -n 6 /etc/pacman.d/mirrorlist_BAK > /etc/pacman.d/mirrorlist
+  if [[ -z "$country" ]]; then
+    print_warning "Couldn't detect your location! Picking recent mirrors instead."
+    echo ""
+    print_info "Ranking download mirrors..."
+    reflector --latest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+  else
+    print_info "Detected country: '$country'"
+    echo ""
+    print_info "Ranking download mirrors..."
+    reflector --country "$country" --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+  fi
 }
 
 update_keyring() {
