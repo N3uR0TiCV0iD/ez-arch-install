@@ -41,6 +41,38 @@ mount_install_partitions() {
   try_mount "$3" "/mnt/home" || return 1
 }
 
+#maybe_install(packageName, *missingCount)
+maybe_install() {
+  if has_package "$1"; then
+    return 0
+  fi
+
+  if [[ -n "$2" ]]; then
+    local -n missingCount=$2
+    ((missingCount++))
+  fi
+
+  update_pacman_ifneeded
+  if [[ $? -eq 2 ]]; then
+    return 2
+  fi
+
+  print_info "Installing '$1' package..."
+  sleep 2
+  if ! pacman -Sy --noconfirm "$1"; then
+    return 1
+  fi
+  return 0
+}
+
+#has_package(packageName)
+has_package() {
+  if pacman -Q "$1" > /dev/null 2>&1; then
+    return 0
+  fi
+  return 1
+}
+
 #install_packages_list(title, filePath, skipPackageCheck=0)
 install_packages_list() {
   local packages
@@ -146,8 +178,7 @@ install_package_prompt() {
     return 1
   fi
 
-  pacman -Sy --noconfirm "$1"
-  if [[ $? -ne 0 ]]; then
+  if ! pacman -Sy --noconfirm "$1"; then
     return 1
   fi
   return 0
